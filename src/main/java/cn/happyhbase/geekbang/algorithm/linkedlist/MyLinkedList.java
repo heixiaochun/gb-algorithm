@@ -1,22 +1,15 @@
-package cn.happyhbase.geekbang.algorithm.basic;
+package cn.happyhbase.geekbang.algorithm.linkedlist;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * 简单链表java实现
- *
- * @author heixiaochun
+ *heixiaochun
+ * @author
  * @date 2019/5/9
  */
-public class MyLinkedList<E> {
-
-    private static class Node<E> {
-        private E element;
-        private Node<E> next;
-
-        public Node(E element, Node<E> next) {
-            this.element = element;
-            this.next = next;
-        }
-    }
+public class MyLinkedList<E> implements Iterable {
 
     /**
      * 链表虚拟首节点，一个sentinel对象
@@ -109,6 +102,68 @@ public class MyLinkedList<E> {
      */
     public int getSize() {
         return size;
+    }
+
+    /**
+     * 返回iterator对象
+     *
+     * @return
+     */
+    @Override
+    public Iterator<E> iterator() {
+        return new MyLinkedListIterator();
+    }
+
+    /**
+     * MyLinkedList迭代器
+     */
+    private class MyLinkedListIterator implements Iterator<E> {
+
+        /**
+         * 当前迭代器位置
+         */
+        private int position = 0;
+
+        /**
+         * 当前节点
+         */
+        private Node<E> currentNode = virtualHead;
+
+        /**
+         * 下一个节点
+         */
+        private Node<E> nextNode = virtualHead.next;
+
+        @Override
+        public boolean hasNext() {
+            return position < size;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("index: " + position + ", not correct, size: " + size);
+            }
+            currentNode = nextNode;
+            nextNode = nextNode.next;
+            position++;
+            return currentNode.element;
+        }
+
+        @Override
+        public void remove() {
+            MyLinkedList.this.remove(--position);
+        }
+    }
+
+    private static class Node<E> {
+        private E element;
+        private Node<E> next;
+
+        public Node(E element, Node<E> next) {
+            this.element = element;
+            this.next = next;
+        }
     }
 
     @Override

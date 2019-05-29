@@ -5,16 +5,17 @@ import java.util.Stack;
 /**
  * https://leetcode.com/problems/valid-parentheses/
  *
- * @author luke
+ * @author heixiaochun
  * @date 2019/5/26
  */
 public class LeetCode20 {
 
     /**
      * "([{}])"
-     "[({})]"
-     "("
-     ")"
+     * "[({})]"
+     * "("
+     * ")"
+     *
      * @param args
      */
     public static void main(String[] args) {

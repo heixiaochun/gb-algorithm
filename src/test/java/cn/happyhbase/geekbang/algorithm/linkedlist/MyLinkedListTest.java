@@ -1,7 +1,9 @@
-package cn.happyhbase.geekbang.algorithm.basic;
+package cn.happyhbase.geekbang.algorithm.linkedlist;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Iterator;
 
 /**
  * @author heixiaochun
@@ -144,6 +146,34 @@ public class MyLinkedListTest {
         list.remove(0);
         Assert.assertEquals(0, list.getSize());
 
+    }
+
+    @Test
+    public void testIterator() {
+        MyLinkedList<String> list = new MyLinkedList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
+        list.add("F");
+        Iterator<String> iterator1 = list.iterator();
+        StringBuilder s = new StringBuilder();
+        while (iterator1.hasNext()) {
+            s.append(iterator1.next());
+        }
+        Assert.assertEquals("ABCDEF", s.toString());
+
+        Iterator<String> iterator2 = list.iterator();
+        int count = 0;
+        while (iterator2.hasNext()) {
+            count++;
+            iterator2.next();
+            if (count == 3) {
+                iterator2.remove();
+            }
+        }
+        Assert.assertEquals("[A,B,D,E,F]", list.toString());
     }
 
 }
