@@ -10,6 +10,9 @@ import java.util.Stack;
  */
 public class LeetCode20 {
 
+    public static final char LEFT_PARENTHESIS = '(';
+    public static final char RIGHT_PARANTHESIS = ')';
+
     /**
      * "([{}])"
      * "[({})]"
@@ -46,7 +49,7 @@ public class LeetCode20 {
     }
 
     private boolean isPair(char left, char right) {
-        if (left == '(' && right == ')') {
+        if (left == LEFT_PARENTHESIS && right == RIGHT_PARANTHESIS) {
             return true;
         }
         if (left == '{' && right == '}') {
