@@ -10,6 +10,10 @@ public class BinarySearch {
         int[] datas = new int[]{10, 22, 33, 50, 60, 70, 80, 90, 99, 100, 155, 200, 255, 300, 1005, 2005, 30000, 2003556};
         System.out.println(new BinarySearch().search(datas, 30000));
         System.out.println(new BinarySearch().search(datas, 990));
+
+        int[] datas2 = new int[]{1, 4, 7, 9, 10, 12, 17, 20};
+        System.out.println(new BinarySearch().search(datas2, 0));
+        System.out.println(new BinarySearch().search(datas, 4));
     }
 
     public int search(int[] datas, int target) {
@@ -28,7 +32,7 @@ public class BinarySearch {
                 endIndex = middleIndex - 1;
             }
         }
-        return -1;
+        return startIndex;
     }
 
 }
